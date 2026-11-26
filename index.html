@@ -1,1 +1,108 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campusly — Student Management</title>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--ink:#172033;--muted:#778198;--line:#e8ecf3;--primary:#635bff;--primary2:#817bff;--green:#16a779;--red:#e45b68;--amber:#e5a12b;--shadow:0 12px 35px rgba(31,43,77,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
+.app{display:flex;min-height:100vh}.sidebar{width:250px;background:#171b31;color:#fff;padding:28px 18px;display:flex;flex-direction:column;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:11px;padding:0 10px 34px;font-size:21px;font-weight:800;letter-spacing:-.5px}.logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#8c85ff,#5c53ed);display:grid;place-items:center;font-size:19px}
+.nav-label{color:#7e86a3;font-size:10px;font-weight:800;letter-spacing:1.5px;padding:0 12px;margin:8px 0 12px}.nav button{width:100%;border:0;background:transparent;color:#aeb5cc;text-align:left;padding:13px 14px;border-radius:11px;margin:3px 0;font-size:13px;font-weight:600;cursor:pointer;display:flex;gap:12px;align-items:center}.nav button:hover,.nav button.active{background:#2a2e4b;color:#fff}.nav .ico{font-size:17px;width:20px;text-align:center}.side-note{margin-top:auto;background:#242945;border:1px solid #343a5b;border-radius:14px;padding:15px;color:#b7bfd7;font-size:12px;line-height:1.6}.side-note strong{display:block;color:#fff;font-size:13px;margin-bottom:4px}
+main{flex:1;min-width:0;padding:30px 36px 50px;max-width:1600px;margin:auto;width:100%}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.eyebrow{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1.2px;text-transform:uppercase}.topbar h1{font-size:25px;margin:5px 0 0;letter-spacing:-.8px}.date{color:var(--muted);font-size:12px;background:#fff;padding:10px 14px;border:1px solid var(--line);border-radius:10px}
+.page{display:none}.page.active{display:block}.welcome{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.welcome h2{font-size:20px;margin:0 0 6px}.welcome p{margin:0;color:var(--muted);font-size:13px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;font-size:12px;cursor:pointer;transition:.2s}.btn-primary{background:var(--primary);color:white;box-shadow:0 6px 14px #635bff30}.btn-primary:hover{background:#5149e8;transform:translateY(-1px)}.btn-light{background:#f0f1ff;color:var(--primary)}.btn-danger{background:#fff0f1;color:var(--red)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}.stat{background:var(--panel);padding:19px;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:600}.stat-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:16px;background:#f0efff}.stat strong{display:block;font-size:27px;margin-top:12px;letter-spacing:-1px}.stat small{color:var(--muted);font-size:11px}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);padding:21px}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;gap:12px}.panel-head h3{font-size:15px;margin:0}.panel-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.toolbar{display:flex;gap:10px;align-items:center}.search{border:1px solid var(--line);border-radius:9px;padding:10px 12px;font:inherit;font-size:12px;outline:none;min-width:210px}.search:focus,input:focus,select:focus{border-color:var(--primary)!important;box-shadow:0 0 0 3px #635bff15}
+table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#929aaf;font-size:10px;letter-spacing:.7px;text-transform:uppercase;padding:12px 10px;border-bottom:1px solid var(--line)}td{padding:14px 10px;border-bottom:1px solid #f0f2f7}tbody tr:last-child td{border-bottom:0}.student{display:flex;align-items:center;gap:10px;font-weight:700}.avatar{width:32px;height:32px;border-radius:10px;background:#eeedff;color:#635bff;display:grid;place-items:center;font-weight:800;font-size:11px}.muted{color:var(--muted)}.badge{padding:5px 9px;border-radius:20px;font-size:10px;font-weight:700}.good{background:#e8f8f2;color:#13966c}.low{background:#fff1e1;color:#c48118}.actions{display:flex;gap:6px}.icon-btn{border:0;background:#f4f5fa;color:#68728b;border-radius:7px;padding:7px 9px;cursor:pointer}.icon-btn:hover{background:#ecebff;color:var(--primary)}.empty{text-align:center;padding:38px;color:var(--muted)}
+.grid-two{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}.big-number{font-size:32px;font-weight:800;margin:8px 0}.progress{height:9px;background:#eff1f6;border-radius:10px;overflow:hidden;margin:14px 0}.progress span{height:100%;display:block;background:linear-gradient(90deg,#635bff,#9b96ff);border-radius:10px}.hint{font-size:11px;color:var(--muted);line-height:1.6}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field label{font-size:11px;font-weight:700;color:#59647c}.field input,.field select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;font-size:13px;outline:none}.field.full{grid-column:1/-1}.modal-backdrop{display:none;position:fixed;inset:0;background:#10152b80;z-index:5;align-items:center;justify-content:center;padding:16px}.modal-backdrop.show{display:flex}.modal{background:#fff;border-radius:17px;padding:24px;width:min(480px,100%);box-shadow:0 25px 80px #10152b40}.modal h3{margin:0 0 5px;font-size:18px}.modal>p{margin:0 0 20px;color:var(--muted);font-size:12px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+.attendance-list{display:grid;gap:9px}.attendance-row{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid var(--line);border-radius:11px;gap:12px}.attendance-row .student{min-width:0}.toggle-group{display:flex;gap:6px}.toggle{border:1px solid var(--line);background:#fff;color:var(--muted);padding:7px 11px;border-radius:8px;font-size:10px;font-weight:800;cursor:pointer}.toggle.selected.p{background:#e8f8f2;color:#13966c;border-color:#b9ead8}.toggle.selected.a{background:#fff0f1;color:#d64c5a;border-color:#f6c4c9}
+.toast{position:fixed;bottom:22px;right:22px;background:#202640;color:#fff;padding:12px 17px;border-radius:10px;font-size:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none;z-index:10}.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.sidebar{width:210px}.stats{grid-template-columns:repeat(2,1fr)}main{padding:25px 20px}.grid-two{grid-template-columns:1fr}}
+@media(max-width:650px){.app{display:block}.sidebar{width:100%;padding:14px;display:block}.brand{padding:0 5px 12px}.nav-label,.side-note{display:none}.nav{display:flex;overflow-x:auto;gap:4px}.nav button{white-space:nowrap;width:auto;padding:10px;font-size:11px}.nav .ico{display:none}main{padding:22px 14px}.topbar{margin-bottom:20px}.date{display:none}.stats{gap:9px}.stat{padding:14px}.stat strong{font-size:23px}.welcome{align-items:flex-start;gap:10px}.welcome .btn{padding:10px;font-size:11px}.panel{padding:14px;overflow-x:auto}.toolbar{width:100%}.search{min-width:0;width:100%}.panel-head{align-items:flex-start;flex-direction:column}table{min-width:560px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">✦</div> campusly</div>
+  <div class="nav-label">WORKSPACE</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">▦</span>Dashboard</button>
+    <button data-page="students"><span class="ico">♙</span>Students</button>
+    <button data-page="attendance"><span class="ico">✓</span>Attendance</button>
+    <button data-page="reports"><span class="ico">▤</span>Reports</button>
+  </nav>
+  <div class="side-note"><strong>Student Management</strong>A simple space to manage student records, daily attendance and class performance.</div>
+</aside>
+<main>
+  <header class="topbar"><div><div class="eyebrow">STUDENT MANAGEMENT SYSTEM</div><h1 id="pageTitle">Dashboard</h1></div><div class="date" id="todayDate"></div></header>
+
+  <section class="page active" id="dashboard">
+    <div class="welcome"><div><h2>Welcome back 👋</h2><p>Here's what's happening with your class today.</p></div><button class="btn btn-primary" onclick="openModal()">＋ Add student</button></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-top">Total students <span class="stat-icon">♙</span></div><strong id="totalStat">0</strong><small>Registered student records</small></div>
+      <div class="stat"><div class="stat-top">Classes held <span class="stat-icon">▣</span></div><strong id="classesStat">0</strong><small>Attendance days recorded</small></div>
+      <div class="stat"><div class="stat-top">Average attendance <span class="stat-icon">◷</span></div><strong id="avgStat">0%</strong><small>Across all student records</small></div>
+      <div class="stat"><div class="stat-top">At-risk students <span class="stat-icon">⚑</span></div><strong id="riskStat">0</strong><small>Below 75% attendance</small></div>
+    </div>
+    <div class="panel"><div class="panel-head"><div><h3>Recent student records</h3><p>Your latest registered students</p></div><button class="btn btn-light" onclick="showPage('students')">View all →</button></div><div id="recentTable"></div></div>
+  </section>
+
+  <section class="page" id="students">
+    <div class="welcome"><div><h2>Student directory</h2><p>Add, search, update or remove student records.</p></div><button class="btn btn-primary" onclick="openModal()">＋ Add student</button></div>
+    <div class="panel"><div class="panel-head"><div><h3>All students</h3><p id="studentCount">0 records</p></div><input class="search" id="studentSearch" placeholder="Search by name or roll number…" oninput="renderStudents()"></div><div id="studentTable"></div></div>
+  </section>
+
+  <section class="page" id="attendance">
+    <div class="welcome"><div><h2>Daily attendance</h2><p>Mark each student present or absent for today's class.</p></div><button class="btn btn-primary" onclick="saveAttendance()">Save attendance</button></div>
+    <div class="grid-two"><div class="panel"><div class="panel-head"><div><h3 id="attendanceHeading">Attendance register</h3><p>Choose a status for every student</p></div></div><div id="attendanceList"></div></div><div class="panel"><h3>Attendance guide</h3><div class="big-number" id="todayMarked">0 / 0</div><div class="hint">Students marked for this session</div><div class="progress"><span id="markedProgress" style="width:0%"></span></div><div class="hint">Your changes are saved in this browser when you press “Save attendance”. Each saved session becomes a new class day.</div></div></div>
+  </section>
+
+  <section class="page" id="reports">
+    <div class="welcome"><div><h2>Attendance reports</h2><p>Review attendance totals and eligibility status.</p></div></div>
+    <div class="panel"><div class="panel-head"><div><h3>Student attendance summary</h3><p>75% is the eligibility benchmark used in this project.</p></div></div><div id="reportTable"></div></div>
+  </section>
+</main>
+</div>
+
+<div class="modal-backdrop" id="studentModal" onclick="if(event.target===this)closeModal()">
+ <div class="modal"><h3 id="modalTitle">Add a student</h3><p>Enter the student's details below.</p>
+  <form id="studentForm" onsubmit="submitStudent(event)"><div class="form-grid">
+   <div class="field"><label>Roll number</label><input type="number" id="rollInput" min="1" required></div>
+   <div class="field"><label>Age</label><input type="number" id="ageInput" min="1" max="100" required></div>
+   <div class="field full"><label>Full name</label><input type="text" id="nameInput" maxlength="49" placeholder="e.g. Aanya Sharma" required></div>
+   <div class="field full"><label>Marks</label><input type="number" id="marksInput" min="0" max="100" step="0.01" required></div>
+  </div><div class="modal-actions"><button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button><button class="btn btn-primary" type="submit">Save student</button></div></form>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const KEY='campusly_students_v1';
+let students=JSON.parse(localStorage.getItem(KEY)||'[]');
+let editRoll=null, todayMarks={};
+const $=id=>document.getElementById(id);
+const save=()=>localStorage.setItem(KEY,JSON.stringify(students));
+const initials=n=>n.trim().split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+const pct=s=>s.totalClasses?Math.round(s.attendedClasses/s.totalClasses*100):0;
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2300)}
+function showPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('pageTitle').textContent=({dashboard:'Dashboard',students:'Students',attendance:'Attendance',reports:'Reports'})[page];renderAll()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function openModal(roll=null){editRoll=roll;const s=students.find(x=>x.roll===roll);$('modalTitle').textContent=s?'Update student':'Add a student';$('rollInput').value=s?s.roll:'';$('rollInput').disabled=!!s;$('nameInput').value=s?s.name:'';$('ageInput').value=s?s.age:'';$('marksInput').value=s?s.marks:'';$('studentModal').classList.add('show')}
+function closeModal(){$('studentModal').classList.remove('show');$('rollInput').disabled=false;$('studentForm').reset();editRoll=null}
+function submitStudent(e){e.preventDefault();const roll=Number($('rollInput').value),name=$('nameInput').value.trim(),age=Number($('ageInput').value),marks=Number($('marksInput').value);if(editRoll===null&&students.some(s=>s.roll===roll)){toast('That roll number already exists.');return}if(editRoll!==null){const s=students.find(x=>x.roll===editRoll);Object.assign(s,{name,age,marks})}else students.push({roll,name,age,marks,attendance:[],totalClasses:0,attendedClasses:0});save();closeModal();renderAll();toast(editRoll===null?'Student added successfully':'Student updated successfully')}
+function deleteStudent(roll){if(!confirm('Delete this student record? This cannot be undone.'))return;students=students.filter(s=>s.roll!==roll);save();renderAll();toast('Student deleted')}
+function tableHTML(list,withActions=true){if(!list.length)return '<div class="empty">No student records yet. Add your first student to get started.</div>';return `<table><thead><tr><th>Student</th><th>Roll no.</th><th>Age</th><th>Marks</th><th>Attendance</th>${withActions?'<th>Actions</th>':''}</tr></thead><tbody>${list.map(s=>`<tr><td><div class="student"><span class="avatar">${initials(s.name)}</span>${escapeHTML(s.name)}</div></td><td>#${s.roll}</td><td>${s.age}</td><td>${Number(s.marks).toFixed(2)}</td><td><span class="badge ${pct(s)>=75?'good':'low'}">${pct(s)}%</span></td>${withActions?`<td><div class="actions"><button class="icon-btn" title="Edit" onclick="openModal(${s.roll})">✎</button><button class="icon-btn" title="Delete" onclick="deleteStudent(${s.roll})">✕</button></div></td>`:''}</tr>`).join('')}</tbody></table>`}
+function escapeHTML(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderStudents(){const q=$('studentSearch').value.toLowerCase();const filtered=students.filter(s=>s.name.toLowerCase().includes(q)||String(s.roll).includes(q));$('studentCount').textContent=`${students.length} student record${students.length===1?'':'s'}`;$('studentTable').innerHTML=tableHTML(filtered)}
+function renderAttendance(){if(!students.length){$('attendanceList').innerHTML='<div class="empty">Add students before taking attendance.</div>';$('todayMarked').textContent='0 / 0';return}students.forEach(s=>{if(!(s.roll in todayMarks))todayMarks[s.roll]='P'});$('attendanceHeading').textContent=`Attendance register · Session ${Math.max(1,...students.map(s=>s.totalClasses+1))}`;$('attendanceList').innerHTML='<div class="attendance-list">'+students.map(s=>`<div class="attendance-row"><div class="student"><span class="avatar">${initials(s.name)}</span><div>${escapeHTML(s.name)}<div class="muted" style="font-size:10px">Roll #${s.roll}</div></div></div><div class="toggle-group"><button class="toggle ${todayMarks[s.roll]==='P'?'selected p':''}" onclick="setMark(${s.roll},'P')">PRESENT</button><button class="toggle ${todayMarks[s.roll]==='A'?'selected a':''}" onclick="setMark(${s.roll},'A')">ABSENT</button></div></div>`).join('')+'</div>';updateMarkedCount()}
+function setMark(roll,status){todayMarks[roll]=status;renderAttendance()}
+function updateMarkedCount(){const n=students.filter(s=>todayMarks[s.roll]).length;$('todayMarked').textContent=`${n} / ${students.length}`;$('markedProgress').style.width=(students.length?n/students.length*100:0)+'%'}
+function saveAttendance(){if(!students.length){toast('Add students first.');return}students.forEach(s=>{const status=todayMarks[s.roll]||'A';s.attendance.push(status);s.totalClasses++;if(status==='P')s.attendedClasses++});save();todayMarks={};renderAll();toast('Attendance saved successfully')}
+function renderReports(){$('reportTable').innerHTML=students.length?`<table><thead><tr><th>Student</th><th>Classes</th><th>Present</th><th>Absent</th><th>Attendance</th><th>Status</th></tr></thead><tbody>${students.map(s=>`<tr><td><div class="student"><span class="avatar">${initials(s.name)}</span>${escapeHTML(s.name)}</div></td><td>${s.totalClasses}</td><td>${s.attendedClasses}</td><td>${s.totalClasses-s.attendedClasses}</td><td><strong>${pct(s)}%</strong></td><td><span class="badge ${pct(s)>=75?'good':'low'}">${pct(s)>=75?'Eligible':'Short attendance'}</span></td></tr>`).join('')}</tbody></table>`:'<div class="empty">No attendance report available yet.</div>'}
+function renderDashboard(){const total=students.length,classes=students.length?Math.max(0,...students.map(s=>s.totalClasses)):0,all=students.reduce((a,s)=>a+s.totalClasses,0),present=students.reduce((a,s)=>a+s.attendedClasses,0);$('totalStat').textContent=total;$('classesStat').textContent=classes;$('avgStat').textContent=(all?Math.round(present/all*100):0)+'%';$('riskStat').textContent=students.filter(s=>s.totalClasses&&pct(s)<75).length;$('recentTable').innerHTML=tableHTML([...students].slice(-5).reverse(),false)}
+function renderAll(){renderDashboard();renderStudents();renderAttendance();renderReports()}
+$('todayDate').textContent=new Date().toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+renderAll();
+</script>
+</body>
+</html>
